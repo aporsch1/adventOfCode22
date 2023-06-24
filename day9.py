@@ -48,8 +48,20 @@ def main():
             distance -= 1
             tail = update_tail(head, tail)
             tail_positions.add(tuple(tail))
-        #print(f"{head=}, {tail=}")
-    len(tail_positions)
     print("part one solution: ")
+    print(len(tail_positions))
+        #print(f"{head=}, {tail=}")
+    rope = [np.array([0,0]) for _ in range(10)]
+
+    tail_positions = set([tuple(rope[9])])
+    for direction, distance in movements:
+        while distance > 0:
+            rope[0] = update_head(rope[0], direction)
+            distance -= 1
+            for i in range(1, len(rope)):
+                rope[i] = update_tail(rope[i-1], rope[i])
+            tail_positions.add(tuple(rope[9]))
+    
+    print("part two solution: ")
     print(len(tail_positions))
 main()
