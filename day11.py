@@ -25,3 +25,25 @@ class monkey:
     def receive_items(self, items_to_receive: list[int]):
         self.items.extend(items_to_receive)
 
+lines = open("day11.txt", "r").readlines()
+
+def parse_monkeys(input_lines):
+    indices, items, operations, division_tests, send_indices = [], [], [], [], []
+    for line in lines:   
+        if line.startswith('Monkey'):
+            indices.append(int(line.strip[-2]))
+        elif line.strip().startswith('Starting items:'):
+            items.append([int(el) for el in line.strip().replace("Starting items: ", "").split(",")])
+        elif line.strip().startswith('Operation'):
+            operations.append(line.strip().replace("Operation: new = ",""))
+        elif line.strip().startswith('Test'):
+            division_tests.append(int(line.strip().replace("Test: divisible by ", "")))
+        elif line.strip().startswith('If true:'):
+            current_send_indices.append[int(line.strip().replace("If true: throw to monkey ", ""))]
+            send_indices.append(current_send_indices)
+        elif line.strip().startswith('If false:'):
+            current_send_indices.append(int(line.strip().replace("If false: throw to monkey ", "")))
+            send_indices.append(current_send_indices)
+    return [Monkey(*args) for args in zip(indices, items, operations, division_tests, send_indices)]
+
+monkeys = parse_monkeys(lines)
